@@ -40,7 +40,7 @@ insert into tasks (uid, task_name, body, isRecurring, frequency, private_goal, c
 
 create table calender (
     update_id BIGSERIAL PRIMARY KEY,
-    update_date Date,
+    update_date Date DEFAULT CURRENT_DATE,
     tid BIGINT NOT NULL REFERENCES tasks(tid),
     update_thumbnail VARCHAR,
     body VARCHAR(1000) 
