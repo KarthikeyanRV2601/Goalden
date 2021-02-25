@@ -9,17 +9,18 @@ create table tasks (
     uid BIGINT NOT NULL REFERENCES credentials(uid),
     task_name VARCHAR(100) NOT NULL,
     body VARCHAR(5000) NOT NULL,
-    pats NUMERIC(10) NOT NULL DEFAULT 0,
-    streak NUMERIC(5) NOT NULL DEFAULT 0,
-    status VARCHAR(20) NOT NULL DEFAULT 'ONGOING',
+    pats NUMERIC(10) DEFAULT 0,
+    streak NUMERIC(5) DEFAULT 0,
+    status VARCHAR(20) DEFAULT 'ONGOING',
     isRecurring NUMERIC(1) NOT NULL DEFAULT 1,
     frequency VARCHAR(15),
     start_date DATE NOT NULL DEFAULT CURRENT_DATE,
     end_date DATE,
-    private_goal NUMERIC(1),
+    private_goal NUMERIC(1) NOT NULL,
     category VARCHAR(50) NOT NULL,
     task_thumbnail VARCHAR
 );
+
 -- Frequency - D, W, M
 --         D - Daily,
 --         5W - 5 times a week
