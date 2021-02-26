@@ -3,35 +3,35 @@ import ReactDOM from'react-dom';
 import {CommentSection} from './CommentSection';
 
 
+export const Feed=(props)=>{
 
+    //props.user_name
 
-export const Feed=()=>{
     return(
-        <div className="Feed">
+        <div className="Feed" key={props.key}>
                 <div className="User">
                     <img className="dp" src="../media/images/man1.jpg"/>
-                    <p>lingesan</p>
+                    <p>{props.user_name}</p>
                 </div>
                 <div className="ThumbnailWrapper">
-                    <img className="Thumbnail" src="../media/images/scenary.jpg"/>
+                    <img className="Thumbnail" src={props.task_thumbnail}/>
                 </div>
                 <p className="Description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae dolore eligendi voluptas soluta nobis, 
-                    natus deserunt maiores aliquid numquam cumque odio alias explicabo debitis nam pariatur aut dolor, illum velit!
+                    {props.body}
                 </p>
                 <div className="Actions">
                     <div className="Pats">
                         <div className="Label">
-                            25 Pats
+                            {props.pats} Pats
                         </div>
                     </div>
                     <div className="ActionSet">
                         <div className="StreakCount">
-                        48 days streak
+                            {props.streak} Streak
                         </div>
-                        <div className="CommentButton">
-                            23 comments
-                        </div>
+                        {/* <div className="CommentButton">
+                            {commentsCount} Comments
+                        </div> */}
                         <a href="calendar.html" className="DailyUploads">
                             Daily Uploads
                         </a>

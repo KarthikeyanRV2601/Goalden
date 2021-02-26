@@ -7,13 +7,17 @@ import {ResultUser} from '../components/Friends_Components/ResultUser';
 import '../styles/friends.css';
 
 export const Friends=()=>{
+
+    var FriendsList=[]
+    var ResultUsersList=[]
+
     return(
         <div className="FriendsPage">
             <NavBar/>
             <div className="LeftPanel">
-                <div className="Friends">
+               <div className="Friends">
                     <Friend/>
-                </div>
+                </div> 
             </div>
             <div className="RightPanel">
                 <SearchBar/>
@@ -24,4 +28,12 @@ export const Friends=()=>{
         </div>
         
     )
+    
 }
+
+
+            // <div className="Feeds">
+            // {UserFeeds.map(Feeditem =>(
+            //         <Feed Feeditem={Feeditem}/>
+            //         ))}
+            // </div> 

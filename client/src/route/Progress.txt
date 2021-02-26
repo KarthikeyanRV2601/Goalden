@@ -1,0 +1,5 @@
+Login, register redux
+
+
+Rendering feeds with the feeds data
+rendering tasks with the tasks data

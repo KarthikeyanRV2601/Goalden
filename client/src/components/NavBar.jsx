@@ -10,7 +10,7 @@ export const NavBar=()=>{
     return(
         <header>
             <ul className="Links">
-            <a href="#" className="Link">
+            <a href="/feeds" className="Link">
                 Feeds
             </a>
             <a href="friends.html" className="Link">
@@ -19,11 +19,10 @@ export const NavBar=()=>{
             <a href="tasks.html" className="Link">
                 Tasks
             </a>
-            
         </ul>
             <div className="ProfileLinks">
                 <div className="WrapperDiv">
-                <a href="AddTask.html"><img className="AddButtonIcon" src={AddIcon}/></a>
+                <a href="/new_task"><img className="AddButtonIcon" src={AddIcon}/></a>
                 <a><img className="NotificationIcon" src={NotificationIcon}/></a>
                 <a><img className="ProfileIcon" src={ProfileIcon}/></a>
             </div>

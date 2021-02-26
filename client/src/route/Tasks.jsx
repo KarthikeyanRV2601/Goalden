@@ -1,4 +1,5 @@
-import React from 'react';
+import { React, useEffect } from 'react';
+import axios from 'axios';
 import ReactDOM from'react-dom';
 import {NavBar} from '../components/NavBar';
 import {SearchBar} from '../components/SearchBar';
@@ -7,20 +8,22 @@ import {Task} from '../components/Tasks_Components/Task'
 import '../styles/tasks.css';
 
 export const Tasks=()=>{
-    var [ TaskTitles, setTaskTitles ] = useState([]);
+
+    var TaskTitles=["hello"]
+    // var [ TaskTitles, setTaskTitles ] = useState([]);
     //Save the title values here
     
-    useEffect(() => {
-        (async () => {
-            try {
-                const TitlesData = await axios.get('/api/salesperson/' + user.id + '/customer');
-                console.log(TitlesData)
-                // setsetTaskTitles(spCusts.data.data.results)
-            } catch (err) {
-                console.log(err)
-            }
-        })()
-    }, [])
+    // useEffect(() => {
+    //     (async () => {
+    //         try {
+    //             const TitlesData = await axios.get('/api/salesperson/' + user.id + '/customer');
+    //             console.log(TitlesData)
+    //             // setsetTaskTitles(spCusts.data.data.results)
+    //         } catch (err) {
+    //             console.log(err)
+    //         }
+    //     })()
+    // }, [])
 
     return(
         <div className="TasksPage">

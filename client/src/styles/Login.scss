@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@mixin flexRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@mixin Shadow {
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+@mixin flexColumn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+*{
+    margin: 0%;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+
+}
+
+.LoginPage{
+    width: 100%;
+    height: 100vh;
+    padding-top: 5%;
+    @include flexRow();
+    justify-content: space-evenly;
+    .IllustrationContainer{
+        width: 50%;
+        height: 100%;
+    }
+    .LeftPanel{
+        width: 30%;
+        height: 70%;
+        @include flexColumn();
+        justify-content: space-evenly;
+    .Introtext{
+        width: 100%;
+        height: 30%;
+        @include flexColumn();
+        justify-content: space-around;
+        h2{
+            font-size: 24px;
+        }
+    }
+    .LoginForm {
+            width: 100%;
+            height: 40%;
+            @include flexColumn();
+            justify-content: space-around;
+          .input-field {
+            position: relative;
+            width: 250px;
+            height: 44px;
+            line-height: 44px;
+          }
+          label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            color: #d3d3d3;
+            transition: 0.2s all;
+            cursor: text;
+          }
+          input {
+            width: 100%;
+            border: 0;
+            outline: 0;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid #d3d3d3;
+            box-shadow: none;
+            color: #111;
+          }
+          input:invalid {
+            outline: 0;
+            // color: #ff2300;
+            //   border-color: #ff2300;
+          }
+          input:focus,
+          input:valid {
+            border-color: #00dd22;
+          }
+          input:focus~label,
+          input:valid~label {
+            font-size: 14px;
+            top: -24px;
+            color: #00dd22;
+          }
+        }
+          
+    }
+    
+}

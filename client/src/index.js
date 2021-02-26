@@ -1,31 +1,15 @@
 import React from 'react';
-import ReactDOM from'react-dom';
-import {App} from './App';
-import {UserProfile} from './route/UserProfile';
-import {AddTask} from './route/AddTask';
-import {CalendarPage} from './route/Calendar';
-import {Tasks} from './route/Tasks';
-import {Friends} from './route/Friends';
-import {Feeds} from './route/Feeds';
-import {Route} from 'react-router';
-import {BrowserRouter as Router } from 'react-router-dom';
+import ReactDOM from 'react-dom';
+// import './index.css';
+import App from './App';
 
-//Redux
-import { Provider } from 'react-redux';
-import store from './store';
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-
-ReactDOM.render((
-    <Provider store={store}>
-
-        <Router>
-                <Route exact path="/" component={App}/>
-                <Route exact path = "/add-task" component = {AddTask} />
-                <Route exact path = "/calendar-page" component = {CalendarPage} />
-                <Route exact path = "/feeds" component = {Feeds} />
-                <Route exact path = "/user-profile" component = {UserProfile} />
-                <Route exact path = "/friends" component = {Friends} />
-                <Route exact path = "/tasks" component = {Tasks} />
-        </Router>
-    </Provider>    
- ),document.querySelector('#root'));
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA

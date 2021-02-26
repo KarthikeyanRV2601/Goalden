@@ -4,10 +4,12 @@ import ReactDOM from'react-dom';
 
 
 export const Friend=()=>{
+
+
     return(
      <div className="Friend">
-        <img className="dp" src="../media/images/man1.jpg"/>
-        <div className="FriendUname">UDANDANANANANA</div>
+        <img className="dp" src="image src here"/>
+        <div className="FriendUname">friend name here</div>
     </div>
     )
 }

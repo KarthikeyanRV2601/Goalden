@@ -1,7 +1,7 @@
 create table credentials (
     uid BIGSERIAL NOT NULL PRIMARY KEY,
     user_name VARCHAR(50) NOT NULL,
-    passwd VARCHAR(1000) NOT NULL,
+    password VARCHAR(1000) NOT NULL
 );
 
 create table tasks (
@@ -27,8 +27,7 @@ create table tasks (
 --         3D - Every 3 days
 --         11M - 11 times a month
 
-insert into tasks (uid, task_name, body, isRecurring, frequency, private_goal, category)
-    values (5, 'Get ripped', 'Planning to work on fitness for next 6 months. Wish me luck', 1, '3W', 0,'Fitness');
+insert into tasks (uid, task_name, body, isRecurring, frequency, private_goal, category) values (5, 'Get ripped', 'Planning to work on fitness for next 6 months. Wish me luck', 1, '3W', 0,'Fitness');
 
 insert into tasks (uid, task_name, body, isRecurring, private_goal, end_date, category)
     values (4, 'Lose Weight', 'Been wanting to do this for quite some time. I am Trying to lose 5 kilos by March 31st', 0, 1, TO_DATE('31/03/2022', 'DD/MM/YYYY'),'Fitness');
