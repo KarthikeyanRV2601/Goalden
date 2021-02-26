@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@mixin flexRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@mixin Shadow {
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+@mixin flexColumn { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+*{
+    margin: 0%;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+
+}
+#root {
+    width: 100%;
+    height: 100%;
+.TasksPage{
+    width: 100%;
+    height: 100vh;
+    padding-top: 5%;
+    @include flexRow();
+    justify-content: space-around;
+    header{
+        width: 100%;
+        height: 7vh;
+        position: absolute;
+        top: 0;
+        background: #353535;
+        @include flexRow();
+        justify-content: space-around;
+        color: white;
+        .Links{
+            width: 40%;
+            height: 100%;
+            @include flexRow();
+            justify-content: space-around;
+            .Link{
+                text-decoration: none;
+                color: white;
+                cursor: pointer;
+                font-family: 'Roboto Condensed';
+                &::after{
+                    content:"";
+                    display: block;
+                    margin:0 auto;
+                    width: 0%;
+                    border-bottom: 1px solid white;
+                } 
+                &:hover:after{        
+                    animation:  animateBorder 0.2s linear forwards;
+                    @keyframes animateBorder {
+                        0%{
+                            width: 0%;
+                        }
+                        100%{
+                            width: 100%;
+                        }
+                    }
+                }
+
+        }
+        
+    }
+    .ProfileLinks{
+        width: 60%;
+        height: 100%;
+        @include flexColumn();
+        .WrapperDiv{
+            align-self:flex-end;
+            width: 20%;
+            height: 100%;
+            @include flexRow();
+            justify-content: space-around;
+            img{
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            transition: 0.2s;
+            &:hover{
+                transform: scale(1.05);
+            }
+        }
+        }
+    }
+}
+.LeftPanel{
+    width: 60%;
+    height: 90%;
+    @include flexColumn();
+    gap: 50px;
+    .SearchBar{
+        width: 70%;
+        height: 60px;
+        @include flexRow();
+        justify-content: space-around;
+        .FriendSearch{
+            width: 90%;
+            height: 50px;
+        }
+        .SearchIcon{
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+    }
+    .TasksList{
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        @include Shadow();
+        @include flexColumn();
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 2%;
+        .Task{
+            width: 90%;
+            height: 60px;
+            @include Shadow();
+            @include flexRow();
+            justify-content: space-around;
+            color: #353535;
+            border-radius: 10px;
+            .DeleteIcon,.OpenIcon{
+                width: 24px;
+                height: 24px;
+                object-fit: contain;
+                cursor: pointer;
+                &:hover,&:focus {
+                    filter: invert(100%) brightness(104%) ;
+                }
+            }
+            .OpenIcon{
+                &:hover,&:focus {
+                    filter: invert(0%)  brightness(104%) ;
+                    transform: scale(1.1);
+                }
+            }
+            .TaskContent{
+                width: 70%;
+                height: 100%;
+                @include flexRow();
+            }
+            .StatusButton{
+                width: 20%;
+                height: 30px;
+                background: #ffffff;
+                color: black;
+                option{
+                    color: black;
+                }
+            }
+        }
+    }
+}
+.RightPanel{
+    width: 30%;
+    height: 90%;
+    
+    @include flexColumn();
+    justify-content: space-around;
+    .SearchFilter{
+        width: 70%;
+        padding: 2%;
+        height: 40%;
+        @include flexColumn();
+        justify-content: space-around;
+        @include Shadow();
+        .FilterWrap{
+            width: 100%;
+            height: 100px;
+            @include flexRow();
+            justify-content: space-between;
+            .FilterLabel{
+                width: 30%;
+                height: 30px;
+                @include flexColumn();
+            }
+            .Filter{
+                width: 60%;
+                height: 30px;
+                @include flexColumn();
+            }
+        }
+    }
+
+}
+}
+}

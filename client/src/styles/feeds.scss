@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@mixin flexRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@mixin Shadow {
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+@mixin flexColumn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+*{
+    margin: 0%;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+
+}
+#root {
+    width: 100%;
+    height: 100%;
+.FeedPage{
+    width: 100%;
+    height: 100vh;
+    @include flexRow();
+    justify-content: space-around;
+    header{
+        width: 100%;
+        height: 7vh;
+        position: absolute;
+        top: 0;
+        background: #353535;
+        @include flexRow();
+        justify-content: space-around;
+        color: white;
+        .Links{
+            width: 40%;
+            height: 100%;
+            @include flexRow();
+            justify-content: space-around;
+            .Link{
+                text-decoration: none;
+                color: white;
+                cursor: pointer;
+                font-family: 'Roboto Condensed';
+                &::after{
+                    content:"";
+                    display: block;
+                    margin:0 auto;
+                    width: 0%;
+                    border-bottom: 1px solid white;
+                } 
+                &:hover:after{        
+                    animation:  animateBorder 0.2s linear forwards;
+                    @keyframes animateBorder {
+                        0%{
+                            width: 0%;
+                        }
+                        100%{
+                            width: 100%;
+                        }
+                    }
+                }
+
+        }
+        
+    }
+    .ProfileLinks{
+        width: 60%;
+        height: 100%;
+        @include flexColumn();
+        .WrapperDiv{
+            align-self:flex-end;
+            width: 20%;
+            height: 100%;
+            @include flexRow();
+            justify-content: space-around;
+            img{
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            transition: 0.2s;
+            &:hover{
+                transform: scale(1.05);
+            }
+        }
+        }
+        
+    }
+
+    }
+    .LeftPanel{
+        width:24%;
+        height: 100%;
+        
+        .Profile{
+            margin-top: 100px;
+            width: 100%;
+            height:500px;
+            @include Shadow();
+            border-radius: 4px;
+            background: white;
+            .ProfilePic{
+                width: 100%;
+                height: 200px;
+                padding: 5%;
+                @include flexColumn();
+                justify-content: space-around;
+                img{
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+            .Assets{
+                width: 100%;
+                height: 80px;
+                @include flexRow();
+                justify-content: space-around;
+                .Coins,.Level{
+                    width: 40%;
+                    height: 30px;
+                    background: #3bb2e2;
+                    color: white;
+                    @include flexRow();
+                }
+                .Level{
+                    background: red;
+                }
+            }
+            .TasksAndRequests{
+                width: 100%;
+                height: 200px;
+                @include flexColumn();
+                gap:5px;
+                // display: none;
+                .Tasks{
+                    width: 80%;
+                    height: 30px;
+                    @include flexColumn();
+                    justify-content: space-around;
+                    color:white;
+                    background: #7d97a5;
+                    cursor: pointer;
+                    &:hover{
+                        color:#353535;
+                        background: #c4c4c4;
+                    }
+                }
+                .Requests{
+                    width: 80%;
+                    height: 30px;
+                    @include flexColumn();
+                    justify-content: space-around;
+                    color: white;
+                    background: #7d97a5;
+                    cursor: pointer;
+                    &:hover{
+                        color:#353535;
+                        background: #c4c4c4;
+                    }
+                }
+            }
+        }
+    }
+    .MainPanel{
+        width: 50%;
+        height: 100%;
+        // background: blue;
+        .Feeds{
+            width: 100%;
+            margin-top: 100px;
+            height: fit-content;
+            @include flexColumn();
+            justify-content: space-around;
+            gap: 50px;
+
+            .Feed{
+                width: 90%;
+                height: 700px;
+                @include Shadow();
+                @include flexColumn();
+                justify-content: space-around;
+                border-radius: 4px;
+                background: white;
+                .User{
+                    width: 20%;
+                    height: 50px;
+                    @include flexRow();
+                    align-self: flex-start;
+                    justify-content: space-around;
+                    .dp{
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+                }
+                .ThumbnailWrapper{
+                    width: 100%;
+                    height: 300px;
+
+                    .Thumbnail{
+                        width: 100%;
+                        height: 100%;
+
+                    }
+                    }
+                    .Description{
+                        width: 90%;
+                        height: 50px;
+                        text-align: center;
+                    }
+                    .Actions{
+                        width: 100%;
+                        height: 50px;
+                        @include flexRow();
+                        justify-content: space-around;
+                        .Pats{
+                            width: 100px;
+                            height: 40px;
+                            // background: red;
+                            @include flexRow();
+                        }
+                        .ActionSet{
+                            width: 70%;
+                            height: 100%;
+                            @include flexRow();
+                            justify-content: flex-end;
+                            gap: 10px;
+                        .StreakCount,.CommentButton,.DailyUploads{
+                            width: 100px;
+                            height: 40px;
+                            // background: red;
+                            @include flexRow();
+                            
+                        }
+                    }
+                    }
+                    .CommentsSection{
+                        width: 100%;
+                        height: 200px;
+                        @include flexColumn();
+                        .Comments{
+                            margin-left: 2%;
+                            align-self: flex-start;
+                            width:90%;
+                            height: 150px;
+                            @include flexColumn();
+                            align-items: flex-start;
+                            gap: 2%;
+                            .Comment{
+                                width: 100%;
+                                height: 30px;
+                                @include flexRow();
+                                align-items: flex-start;
+                                .UserName{
+                                    width: 20%;
+                                    height: 100%;
+                                    @include flexColumn();
+                                    color:#353535;
+                                }
+                                .CommentContent{
+                                    padding-left: 2%;
+                                    width: 80%;
+                                    height: 100%;
+                                    @include flexColumn();
+                                    align-items: flex-start;
+                                    
+
+                                }
+                                
+                            }
+                        }
+                        .CommentBox{
+                            width: 100%;
+                            height: 50px;
+                            @include flexRow();
+                            justify-content: space-evenly;
+                            .CommentInput{
+                                width: 90%;
+                                height: 70%;
+                            }
+                            .PostIcon{
+                                width: 24px;
+                                height: 24px;
+                                object-fit: contain;
+                                cursor: pointer;
+                                transition: 0.2s;
+                                &:hover{
+                                    transform: scale(1.1);
+                                }
+                            }
+                        }
+                    }
+
+                
+            }
+
+        }
+
+    }
+    .RightPanel{
+        width:16%;
+        height: 100%;
+
+    }
+}
+}

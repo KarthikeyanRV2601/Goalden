@@ -1,0 +1,278 @@
+/* ---------- FONTAWESOME ---------- */
+/* ---------- https://fortawesome.github.com/Font-Awesome/ ---------- */
+/* ---------- http://weloveiconfonts.com/ ---------- */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap");
+@import url(https://weloveiconfonts.com/api/?family=fontawesome);
+* {
+  margin: 0%;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+}
+
+*[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+/* ---------- GENERAL ---------- */
+#root {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background: #f9f9f9;
+  color: #0e171c;
+  font: 300 100%/1.5em 'Lato', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.ActualCalendarcontainer {
+  width: 500px;
+  height: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  /* ---------- CALENDAR ---------- */
+}
+
+.ActualCalendarcontainer a {
+  text-decoration: none;
+}
+
+.ActualCalendarcontainer h2 {
+  font-size: 2em;
+  line-height: 1.25em;
+  margin: .25em 0;
+}
+
+.ActualCalendarcontainer h3 {
+  font-size: 1.5em;
+  line-height: 1em;
+  margin: .33em 0;
+}
+
+.ActualCalendarcontainer table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.ActualCalendarcontainer .container {
+  width: 510px;
+}
+
+.ActualCalendarcontainer .calendar {
+  text-align: center;
+}
+
+.ActualCalendarcontainer .calendar header {
+  position: relative;
+}
+
+.ActualCalendarcontainer .calendar h2 {
+  text-transform: uppercase;
+}
+
+.ActualCalendarcontainer .calendar thead {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.ActualCalendarcontainer .calendar tbody {
+  color: #7c8a95;
+}
+
+.ActualCalendarcontainer .calendar tbody td:hover {
+  border: 2px solid #00addf;
+}
+
+.ActualCalendarcontainer .calendar td {
+  border: 2px solid transparent;
+  border-radius: 50%;
+  display: inline-block;
+  height: 4em;
+  line-height: 4em;
+  text-align: center;
+  width: 4em;
+}
+
+.ActualCalendarcontainer .calendar .prev-month,
+.ActualCalendarcontainer .calendar .next-month {
+  color: #cbd1d2;
+}
+
+.ActualCalendarcontainer .calendar .prev-month:hover,
+.ActualCalendarcontainer .calendar .next-month:hover {
+  border: 2px solid #cbd1d2;
+}
+
+.ActualCalendarcontainer .current-day {
+  background: #00addf;
+  color: #f9f9f9;
+}
+
+.ActualCalendarcontainer .event {
+  cursor: pointer;
+  position: relative;
+}
+
+.ActualCalendarcontainer .event:after {
+  background: #00addf;
+  border-radius: 50%;
+  bottom: .5em;
+  display: block;
+  content: '';
+  height: .5em;
+  left: 50%;
+  margin: -.25em 0 0 -.25em;
+  position: absolute;
+  width: .5em;
+}
+
+.ActualCalendarcontainer .event.current-day:after {
+  background: #f9f9f9;
+}
+
+.ActualCalendarcontainer .btn-prev,
+.ActualCalendarcontainer .btn-next {
+  border: 2px solid #cbd1d2;
+  border-radius: 50%;
+  color: #cbd1d2;
+  height: 2em;
+  font-size: .75em;
+  line-height: 2em;
+  margin: -1em;
+  position: absolute;
+  top: 50%;
+  width: 2em;
+}
+
+.ActualCalendarcontainer .btn-prev:hover,
+.ActualCalendarcontainer .btn-next:hover {
+  background: #cbd1d2;
+  color: #f9f9f9;
+}
+
+.ActualCalendarcontainer .btn-prev {
+  left: 6em;
+}
+
+.ActualCalendarcontainer .btn-next {
+  right: 6em;
+}
+
+.InformationContainer {
+  width: 500px;
+  height: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.InformationContainer .Wrapper {
+  width: 100%;
+  height: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.InformationContainer .Wrapper .Thumbail {
+  width: 90%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.InformationContainer .Wrapper .SwitchLeft, .InformationContainer .Wrapper .SwitchRight {
+  width: 20px;
+  height: 20px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  cursor: pointer;
+}
+
+.InformationContainer .Wrapper .SwitchLeft:hover, .InformationContainer .Wrapper .SwitchRight:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.InformationContainer .Wrapper .SwitchRight {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.InformationContainer .Wrapper .SwitchRight:hover {
+  -webkit-transform: scale(1.1) rotate(180deg);
+          transform: scale(1.1) rotate(180deg);
+}
+
+.InformationContainer .Description {
+  width: 90%;
+  height: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+/*# sourceMappingURL=calendar.css.map */

@@ -43,22 +43,25 @@ router.get('/:id', auth, async (req, res) => {
     }
 })
 
-//Check if current post is the user's or not 
+//Check if post is the current logged in user's or not 
 router.get('/mine/:id', auth, async (req, res) => {
 
     try {
         const update = await db.query('select uid from tasks where tid=$1', [req.params.id]);
         
         // if (update.rows[0])
-        console.log(update.rows[0].uid)
-        console.log(req.user.id)
-        res.json({
-            status: "success",
-            length: update.rows.length,
-            data: {
-                update: update.rows
-            }
-        })
+        if(update.rows[0].uid == req.user.id)
+            res.json({
+                status: "success",
+                length: update.rows.length,
+                mine: 1
+            })
+        else
+            res.json({
+                status: "success",
+                length: update.rows.length,
+                mine: 0
+            })
     } catch (error) {
         console.error(error.message);
         res.status(500).send('Error')
