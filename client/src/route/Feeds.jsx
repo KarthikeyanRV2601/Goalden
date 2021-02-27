@@ -5,10 +5,12 @@ import {NavBar} from '../components/NavBar';
 import {Profile} from '../components/Feeds_Components/Profile';
 import '../styles/feeds.css';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-export const Feeds=()=>{
-
+const Feeds=({ isAuth })=>{
 
     const [FeedList, setFeedList] = useState([]);
 
@@ -26,6 +28,9 @@ export const Feeds=()=>{
         })()
     }, [])
 
+    if(!isAuth)
+        return <Redirect to='/login' />
+    
     return(
         <div className="FeedPage">
             <NavBar/>
@@ -56,3 +61,15 @@ export const Feeds=()=>{
         </div>
     )
 }
+
+Feeds.propTypes = {
+    isAuth: PropTypes.bool,
+    user: PropTypes.object,
+}
+
+const mapStateToProps = state => ({
+    isAuth: state.auth.isAuth,
+    user: state.auth.user
+});
+
+export default connect(mapStateToProps, null)(Feeds)

@@ -9,7 +9,7 @@ const auth = require("../middleware/auth");
 // Get all posts made by all users for feed
 router.get('/', async (req, res) => {
     try {
-        const tasks = await db.query('select * from tasks natural join credentials');
+        const tasks = await db.query('select * from tasks natural join credentials order by tid desc');
         res.json({
             status: "success",
             length: tasks.rows.length,
@@ -58,6 +58,7 @@ router.post('/', auth, async (req, res) => {
                         end_date, private_goal, category, task_thumbnail) values ($1, $2, $3, $4, $5, TO_DATE($6, 'DD/MM/YYYY'), $7, $8, $9) returning *`, 
                         [req.user.id, req.body.task_name, req.body.body, req.body.isRecurring, req.body.frequency, 
                          req.body.end_date, req.body.private_goal, req.body.category, req.body.task_thumbnail]); 
+        console.log("Back end")
         res.json({
             status: "success",
             results: results.rows.length,

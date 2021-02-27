@@ -7,7 +7,7 @@ import {AddTask} from './route/AddTask';
 import {CalendarPage} from './route/Calendar';
 import {Tasks} from './route/Tasks';
 import {Friends} from './route/Friends';
-import {Feeds} from './route/Feeds';
+import Feeds from './route/Feeds';
 import {Login} from './route/Login';
 
 import setAuthToken from './utils/setAuthToken';
