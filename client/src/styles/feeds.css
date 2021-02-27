@@ -403,13 +403,36 @@
 }
 
 #root .FeedPage .MainPanel .Feeds .Feed .ThumbnailWrapper {
+  position: relative;
   width: 100%;
   height: 300px;
+}
+
+#root .FeedPage .MainPanel .Feeds .Feed .ThumbnailWrapper .Background{
+  position: absolute;
+  
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  display: none;
 }
 
 #root .FeedPage .MainPanel .Feeds .Feed .ThumbnailWrapper .Thumbnail {
   width: 100%;
   height: 100%;
+  object-fit: contain;
+  object-position: center;
+  z-index: 100;
+  background: #353535;
+  
 }
 
 #root .FeedPage .MainPanel .Feeds .Feed .Description {

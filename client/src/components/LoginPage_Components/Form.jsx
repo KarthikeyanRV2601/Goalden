@@ -33,8 +33,7 @@ const Form= ({ login, isAuth })=>{
     return(
         <div class="LeftPanel">
             <div class="Introtext">
-                <h2>Welcome back</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui ullam quas quis et quo excepturi doloru</p>
+                <p>Your <span>Goalden</span> journey <br/><span class="SecondLine">begins now</span></p>
             </div>
             <form onSubmit={e => onSubmit(e)} class="LoginForm">
                 <div class="input-field">
@@ -55,7 +54,7 @@ const Form= ({ login, isAuth })=>{
                         required />
                     <label for="pwd">password</label>
                 </div>
-                <button>Submit</button>
+                <button className="Signinbtn">Sign in</button>
             </form>
         </div>
     )

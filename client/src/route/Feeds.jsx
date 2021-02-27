@@ -27,9 +27,10 @@ const Feeds=({ isAuth })=>{
             }
         })()
     }, [])
-
+    
     if(!isAuth)
         return <Redirect to='/login' />
+    
     
     return(
         <div className="FeedPage">
@@ -47,6 +48,7 @@ const Feeds=({ isAuth })=>{
                                     task_thumbnail={task.task_thumbnail}
                                     body={task.body}
                                     pats={task.pats}
+                                    task_name={task.task_name}
                                     streak={task.streak}
                                     key={task.tid}
                                     tid={task.tid}

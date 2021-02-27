@@ -52,12 +52,16 @@ create table friends (
 );
 
 create table user_details (
-    uid BIGSERIAL NOT NULL REFERENCES credentials(uid),
-    coins NUMERIC NOT NULL DEFAULT 0,
-    level VARCHAR(50) NOT NULL DEFAULT 'Unrepentant Slacker',
-    highest_streak NUMERIC(5) NOT NULL,
-    best_level VARCHAR(50) NOT NULL,
-    tasks_completed NUMERIC(5) NOT NULL,
-    tasks_failed NUMERIC(5) NOT NULL,
-    tasks_ongoing NUMERIC(5) NOT NULL
+    uid BIGSERIAL NOT NULL REFERENCES credentials(uid) PRIMARY KEY,
+    goald NUMERIC NOT NULL DEFAULT 100,
+    level VARCHAR(50) NOT NULL DEFAULT 'Slacker',
+    highest_streak NUMERIC(5) DEFAULT 0,
+    best_level VARCHAR(50) ,
+    tasks_completed NUMERIC(5) DEFAULT 0,
+    tasks_failed NUMERIC(5) DEFAULT 0,
+    tasks_ongoing NUMERIC(5) DEFAULT 0
 );
+
+insert into user_details (uid ) values (4);
+insert into user_details (uid ) values (5);
+insert into user_details (uid ) values (6);

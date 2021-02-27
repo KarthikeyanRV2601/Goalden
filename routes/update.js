@@ -21,6 +21,7 @@ router.post('/', auth, async (req, res) => {
       mm='0'+mm;
     } 
     update_date = dd+ "-" + mm + "-" +yyyy
+    update_date = "25-01-2021"
     try {
         const results = await db.query(`insert into calendar (tid,update_thumbnail, body, update_date) 
                     values ($1, $2, $3, $4) returning *`, 

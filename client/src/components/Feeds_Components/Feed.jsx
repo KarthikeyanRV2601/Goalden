@@ -5,15 +5,15 @@ import {CommentSection} from './CommentSection';
 
 export const Feed=(props)=>{
 
-
     return(
         <div className="Feed" key={props.key}>
                 <div className="User">
                     <img className="dp" src="../media/images/man1.jpg"/>
                     <p>{props.user_name}</p>
                 </div>
+                <h2>{props.task_name}</h2>
                 <div className="ThumbnailWrapper">
-                    <img className="Thumbnail" src={props.task_thumbnail}/>
+                    <img className="Thumbnail" src={props.task_thumbnail} />
                 </div>
                 <p className="Description">
                     {props.body}

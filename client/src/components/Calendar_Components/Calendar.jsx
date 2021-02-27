@@ -10,22 +10,19 @@ import scenary from '../../media/images/scenary.jpg'
 export const CalendarComp = (props) => {
 
     const [ updateList, setUpdateList ] = useState([])
-    const [ isMine, setIsMine ] = useState(true);
+    const [ isMine, setIsMine ] = useState(false);
     const [ taskInfo, setTaskInfo ] = useState([]);
-    const [ displayForm, setDisplayForm ] = useState(true);
+    const [ displayForm, setDisplayForm ] = useState(0);
     const [ displayData, setDisplayData ] = useState({
         "thumbnail": "",
         "body": ""
     });
     const [ showGoalStarted, setGoalStarted ] = useState(false);
-    const [ calendarValue, setCalendarValue ] = useState(0);
-    const [ isUpdated,setIsUpdate ] =useState(false);
     const [ formData, setFormData ] = useState({
         tid: props.tid,
         update_thumbnail: "",
         body: ""
     })
-    const [CalendarState,setCalendarState]=useState("");
 
     const months = {
         "01": "January",
@@ -51,10 +48,10 @@ export const CalendarComp = (props) => {
 
             // console.log(update_data.data.data.update);
             // console.log(post_owner.data.mine);
-            console.log(task.data.data.tasks);
+            // console.log(task.data.data.tasks);
             setUpdateList(update_data.data.data.update);
             setTaskInfo(task.data.data.tasks);
-            setIsMine(post_owner);
+            setIsMine(post_owner.data.mine);
 
 
         } catch (error) {
@@ -62,55 +59,6 @@ export const CalendarComp = (props) => {
         }
         })()
     }, [])
-    
-    var styling = (date, color)=>{
-        // StartDate="February 5, 2021";
-        var Stringdate="[aria-label^="+`'${date}'`+"]";
-        var StartDateButton= document.querySelectorAll(Stringdate);
-        if(StartDateButton[0]!= null)
-        {
-            StartDateButton[0].parentElement.style.background=color;
-            StartDateButton[0].parentElement.style.color="white";
-            
-        }
-        
-    }
-    if(taskInfo.length !== 0)
-    {
-        let taskDate = taskInfo[0].start_date
-        // console.log(taskDate)
-        let curDate = taskDate.substring(0, 2)
-        if(curDate[0] == 0)
-            curDate = curDate[1]
-        let curMonth = months[taskDate.substring(3, 5)]
-        let year = taskDate.substring(6, 10)
-        styling(curMonth + " " + curDate + ", " + year, "green")
-    }
-
-    if( updateList.length !== 0 )
-    {
-        updateList.forEach(element => {
-            let updateDate = element.update_date
-            let curDate = updateDate.substring(0, 2)
-            if(curDate[0] == 0)
-                curDate = curDate[1]
-            let curMonth = months[updateDate.substring(3, 5)]
-            let year = updateDate.substring(6, 10)
-
-            styling(curMonth + " " + curDate + ", " + year, "orange")
-        })
-    }
-
-    
-    //change start date color
-
-    // console.log(buttons[0]);
-    // buttons.forEach((button=>{
-    //     button.addEventListener('click',ButtonClick)
-    // }));
-    
-  
-
 
     var FetchImageAsBase64=(e) => {
         var file = e.target.files[0];
@@ -137,10 +85,13 @@ export const CalendarComp = (props) => {
     }
 
 
-    const calendarChange = e => {
-        var dd=e.getDate();
-        var mm=e.getMonth()+1;
-        var yyyy=e.getFullYear();
+    const calendarChange = (value, e) => {
+        // console.log(e)
+        console.log(isMine)
+
+        var dd=value.getDate();
+        var mm=value.getMonth()+1;
+        var yyyy=value.getFullYear();
         if(dd<10) 
         {   
             dd='0'+dd;
@@ -155,37 +106,99 @@ export const CalendarComp = (props) => {
         // let combined_array = updateList.concat(taskInfo);
         var found=0;
         updateList.forEach(el => {
-            // console.log(date)
+            // consolvalue.log(date)
             // console.log(el.update_date)
             if(found!==1)
             {
-            if(el.update_date === date)
-            {
-                found=1
-                setDisplayData({...displayData,
-                    "thumbnail": el.update_thumbnail,
-                    "body": el.body
-                })
-                setDisplayForm(false)
-                setGoalStarted(false);
-            }
-            else
-                setDisplayForm(true)
+                if(el.update_date === date)
+                {
+                    found=1
+                    setDisplayData({...displayData,
+                        "thumbnail": el.update_thumbnail,
+                        "body": el.body
+                    })
+                    setDisplayForm(1)
+                    setGoalStarted(false);
+                }
+                else
+                    setDisplayForm(true)
             }
         })
         
-        if(taskInfo[0].start_date == date)
+        if(found != 1)
         {
-            setDisplayData({...displayData,
-                "thumbnail": taskInfo[0].task_thumbnail,
-                "body": taskInfo[0].body
-            })
-            setGoalStarted(true);
-            setDisplayForm(false);
+
+            var today = new Date()
+            var dd=today.getDate();
+            var mm=today.getMonth()+1;
+            var yyyy=today.getFullYear();
+            if(dd<10) 
+            {   
+                dd='0'+dd;
+            } 
+            if(mm<10) 
+            {
+                mm='0'+mm;
+            } 
+            var today= dd+ "-" + mm + "-" + yyyy;
+            if(taskInfo[0].start_date == date)
+            {
+                setDisplayData({...displayData,
+                    "thumbnail": taskInfo[0].task_thumbnail,
+                    "body": taskInfo[0].body
+                })
+                setGoalStarted(true);
+                setDisplayForm(1);
+            }
+            else if (date == today && isMine)
+            {
+                console.log(isMine)
+                setDisplayForm(0);
+            }
+            else
+            {
+                setDisplayData({...displayData,
+                    "thumbnail": null,
+                    "body": "No recorded update today."
+                })
+                setDisplayForm(2);
+            }
         }
           
     }
     
+    function tileClassName({ date, view }) {
+
+        var dd=date.getDate();
+        var mm=date.getMonth()+1;
+        var yyyy=date.getFullYear();
+        if(dd<10) 
+        {   
+            dd='0'+dd;
+        } 
+        if(mm<10) 
+        {
+            mm='0'+mm;
+        } 
+        var date = dd+ "-" + mm + "-" + yyyy;
+
+        // Add class to tiles in month view only
+
+        if(taskInfo[0] != null && updateList != null){
+            const task = [taskInfo[0].start_date]
+            if (view === 'month') {
+              // Check if a date React-Calendar wants to check is on the list of dates to add class to
+              if (task.find(dDate => dDate === date)) {
+                return 'StartDate';
+              }
+              if (updateList.find(element => element.update_date === date)){
+                  return 'Checkpoint';
+              }
+            }
+        }
+        return ""
+      }
+    //StartDate Checkpoint EndDate
     
   const onSubmit = async e => {
     e.preventDefault();
@@ -197,7 +210,7 @@ export const CalendarComp = (props) => {
     }
 
     console.log(formData);
-    }   
+    }       
   
 
 
@@ -208,14 +221,15 @@ export const CalendarComp = (props) => {
         
             <h1>{taskInfo[0] ? taskInfo[0].task_name : ""}</h1>
             <Calendar
-            onChange={e => calendarChange(e)}
-            value={calendarValue}
+                onChange={(value, event) => calendarChange(value, event)}
+                tileClassName={tileClassName}
             />
         </div>
+        <div className="HoverDisplay">{isUpdated?"Updates available - credited 10 goalds":"No updates - deduced 20 goalds"</div>
 
-        {!displayForm && 
+        {(displayForm == 1 || displayForm == 2) && 
           <div className="InformationContainer" >
-            <h2>{showGoalStarted?"Goal started today": "Daily update"}</h2>
+            <h2>{showGoalStarted?"Goal started today": "Update Info"}</h2>
             <div className="Wrapper">
                   <div className="SwitchLeft">
                       {/* <img src={back}/> */}
@@ -231,7 +245,8 @@ export const CalendarComp = (props) => {
             </div>
         </div>
              }
-        {displayForm && 
+       
+        {(displayForm == 0) && (isMine) && 
             <div className="UpdateContainer">
 
                 <div class="ThumbnailUploader">

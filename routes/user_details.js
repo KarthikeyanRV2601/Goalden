@@ -6,15 +6,15 @@ const db = require('../db');
 const auth = require("../middleware/auth");
 
 
-// Get all posts made by all users for feed
-router.get('/', async (req, res) => {
+// Get user details
+router.get('/', auth,  async (req, res) => {
     try {
-        const tasks = await db.query('select * from tasks natural join credentials WHERE tasks.private_goal != 1 order by tid desc;');
+        const user_details = await db.query('select * from user_details WHERE uid=$1', [req.user.id]);
         res.json({
             status: "success",
-            length: tasks.rows.length,
+            length: user_details.rows.length,
             data: {
-                tasks: tasks.rows
+                user_details: user_details.rows
             }
         })
     } catch (error) {
@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-// Get post corresponding to task id
+// Change goald coins
 router.get('/details/:tid', async (req, res) => {
     try {
         const tasks = await db.query('select * from tasks natural join credentials WHERE tid = $1', [req.params.tid]);
