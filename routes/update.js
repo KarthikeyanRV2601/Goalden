@@ -6,13 +6,13 @@ const db = require('../db');
 const auth = require("../middleware/auth");
 
 // Add an update to a post
-router.post('/:id', auth, async (req, res) => {
+router.post('/', auth, async (req, res) => {
     
     try {
 
-        const results = await db.query(`insert into calender (tid,update_thumbnail, body) 
+        const results = await db.query(`insert into calendar (tid,update_thumbnail, body) 
                     values ($1, $2, $3) returning *`, 
-                        [req.params.id,req.body.update_thumbnail, req.body.body]); 
+                        [req.body.tid,req.body.update_thumbnail, req.body.body]); 
         res.json({
             status: "success",
             results: results.rows.length,
@@ -28,7 +28,7 @@ router.post('/:id', auth, async (req, res) => {
 //Get all updates of a task 
 router.get('/:id', auth, async (req, res) => {
     try {
-        const update = await db.query('select * from calender where tid=$1', [req.params.id]);
+        const update = await db.query('select * from calendar where tid=$1', [req.params.id]);
         // console.log(user.rows)
         res.json({
             status: "success",
@@ -54,13 +54,13 @@ router.get('/mine/:id', auth, async (req, res) => {
             res.json({
                 status: "success",
                 length: update.rows.length,
-                mine: 1
+                mine: true
             })
         else
             res.json({
                 status: "success",
                 length: update.rows.length,
-                mine: 0
+                mine: false
             })
     } catch (error) {
         console.error(error.message);

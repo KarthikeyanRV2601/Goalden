@@ -9,7 +9,7 @@ const auth = require("../middleware/auth");
 // Get all posts made by all users for feed
 router.get('/', async (req, res) => {
     try {
-        const tasks = await db.query('select * from tasks natural join credentials order by tid desc');
+        const tasks = await db.query('select * from tasks natural join credentials WHERE tasks.private_goal != 1 order by tid desc;');
         res.json({
             status: "success",
             length: tasks.rows.length,

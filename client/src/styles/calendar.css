@@ -22,6 +22,11 @@
 #root {
   width: 100%;
   height: 100%;
+}
+
+#root .CalendarPage {
+  width: 100%;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -41,7 +46,8 @@
   min-height: 100vh;
 }
 
-.ActualCalendarcontainer {
+#root .CalendarPage .ActualCalendarcontainer {
+ 
   width: 500px;
   height: 500px;
   display: -webkit-box;
@@ -58,135 +64,10 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  /* ---------- CALENDAR ---------- */
 }
 
-.ActualCalendarcontainer a {
-  text-decoration: none;
-}
+#root .CalendarPage .InformationContainer {
 
-.ActualCalendarcontainer h2 {
-  font-size: 2em;
-  line-height: 1.25em;
-  margin: .25em 0;
-}
-
-.ActualCalendarcontainer h3 {
-  font-size: 1.5em;
-  line-height: 1em;
-  margin: .33em 0;
-}
-
-.ActualCalendarcontainer table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-.ActualCalendarcontainer .container {
-  width: 510px;
-}
-
-.ActualCalendarcontainer .calendar {
-  text-align: center;
-}
-
-.ActualCalendarcontainer .calendar header {
-  position: relative;
-}
-
-.ActualCalendarcontainer .calendar h2 {
-  text-transform: uppercase;
-}
-
-.ActualCalendarcontainer .calendar thead {
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.ActualCalendarcontainer .calendar tbody {
-  color: #7c8a95;
-}
-
-.ActualCalendarcontainer .calendar tbody td:hover {
-  border: 2px solid #00addf;
-}
-
-.ActualCalendarcontainer .calendar td {
-  border: 2px solid transparent;
-  border-radius: 50%;
-  display: inline-block;
-  height: 4em;
-  line-height: 4em;
-  text-align: center;
-  width: 4em;
-}
-
-.ActualCalendarcontainer .calendar .prev-month,
-.ActualCalendarcontainer .calendar .next-month {
-  color: #cbd1d2;
-}
-
-.ActualCalendarcontainer .calendar .prev-month:hover,
-.ActualCalendarcontainer .calendar .next-month:hover {
-  border: 2px solid #cbd1d2;
-}
-
-.ActualCalendarcontainer .current-day {
-  background: #00addf;
-  color: #f9f9f9;
-}
-
-.ActualCalendarcontainer .event {
-  cursor: pointer;
-  position: relative;
-}
-
-.ActualCalendarcontainer .event:after {
-  background: #00addf;
-  border-radius: 50%;
-  bottom: .5em;
-  display: block;
-  content: '';
-  height: .5em;
-  left: 50%;
-  margin: -.25em 0 0 -.25em;
-  position: absolute;
-  width: .5em;
-}
-
-.ActualCalendarcontainer .event.current-day:after {
-  background: #f9f9f9;
-}
-
-.ActualCalendarcontainer .btn-prev,
-.ActualCalendarcontainer .btn-next {
-  border: 2px solid #cbd1d2;
-  border-radius: 50%;
-  color: #cbd1d2;
-  height: 2em;
-  font-size: .75em;
-  line-height: 2em;
-  margin: -1em;
-  position: absolute;
-  top: 50%;
-  width: 2em;
-}
-
-.ActualCalendarcontainer .btn-prev:hover,
-.ActualCalendarcontainer .btn-next:hover {
-  background: #cbd1d2;
-  color: #f9f9f9;
-}
-
-.ActualCalendarcontainer .btn-prev {
-  left: 6em;
-}
-
-.ActualCalendarcontainer .btn-next {
-  right: 6em;
-}
-
-.InformationContainer {
   width: 500px;
   height: 500px;
   display: -webkit-box;
@@ -207,9 +88,10 @@
       justify-content: space-around;
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          display: none;
 }
 
-.InformationContainer .Wrapper {
+#root .CalendarPage .InformationContainer .Wrapper {
   width: 100%;
   height: 50%;
   display: -webkit-box;
@@ -226,14 +108,14 @@
       justify-content: space-around;
 }
 
-.InformationContainer .Wrapper .Thumbail {
+#root .CalendarPage .InformationContainer .Wrapper .Thumbail {
   width: 90%;
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
 
-.InformationContainer .Wrapper .SwitchLeft, .InformationContainer .Wrapper .SwitchRight {
+#root .CalendarPage .InformationContainer .Wrapper .SwitchLeft, #root .CalendarPage .InformationContainer .Wrapper .SwitchRight {
   width: 20px;
   height: 20px;
   -o-object-fit: contain;
@@ -241,22 +123,22 @@
   cursor: pointer;
 }
 
-.InformationContainer .Wrapper .SwitchLeft:hover, .InformationContainer .Wrapper .SwitchRight:hover {
+#root .CalendarPage .InformationContainer .Wrapper .SwitchLeft:hover, #root .CalendarPage .InformationContainer .Wrapper .SwitchRight:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
 
-.InformationContainer .Wrapper .SwitchRight {
+#root .CalendarPage .InformationContainer .Wrapper .SwitchRight {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
 }
 
-.InformationContainer .Wrapper .SwitchRight:hover {
+#root .CalendarPage .InformationContainer .Wrapper .SwitchRight:hover {
   -webkit-transform: scale(1.1) rotate(180deg);
           transform: scale(1.1) rotate(180deg);
 }
 
-.InformationContainer .Description {
+#root .CalendarPage .InformationContainer .Description {
   width: 90%;
   height: 40%;
   display: -webkit-box;
@@ -276,3 +158,358 @@
   text-align: center;
 }
 /*# sourceMappingURL=calendar.css.map */
+#root .CalendarPage header {
+  width: 100%;
+  height: 7vh;
+  position: absolute;
+  top: 0;
+  background: #353535;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  color: white;
+}
+
+#root .CalendarPage header .Links {
+  width: 40%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#root .CalendarPage header .Links .Link {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  font-family: 'Roboto Condensed';
+}
+
+#root .CalendarPage header .Links .Link::after {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  width: 0%;
+  border-bottom: 1px solid white;
+}
+
+#root .CalendarPage header .Links .Link:hover:after {
+  -webkit-animation: animateBorder 0.2s linear forwards;
+          animation: animateBorder 0.2s linear forwards;
+}
+
+@-webkit-keyframes animateBorder {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes animateBorder {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+#root .CalendarPage header .ProfileLinks {
+  width: 60%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#root .CalendarPage header .ProfileLinks .WrapperDiv {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  width: 20%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#root .CalendarPage header .ProfileLinks .WrapperDiv img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+#root .CalendarPage header .ProfileLinks .WrapperDiv img:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+#root .CalendarPage  .UpdateContainer{
+  width: 500px;
+  height: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          /* display: none; */
+}
+
+#root .CalendarPage  .UpdateContainer #Description {
+  height: 150px;
+  width:95%;
+  resize: none;
+  padding: 1%;
+  margin-bottom: 5px;
+}
+
+#root .CalendarPage  .UpdateContainer .Post_Task_Button {
+  width: 100px;
+  height: 30px;
+}
+
+
+
+#root .CalendarPage  .UpdateContainer .ThumbnailUploader {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#root .CalendarPage  .UpdateContainer .ThumbnailUploader img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+#root .CalendarPage  .UpdateContainer .UploadThumbnailBtn,#root .CalendarPage  .UpdateContainer .SaveInformationButton{
+  width: 200px;
+  height: 40px;
+  border: 1px solid #353535;
+  background: white;
+  outline: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+#root .CalendarPage  .UpdateContainer .UploadThumbnailBtn:hover,#root .CalendarPage  .UpdateContainer .SaveInformationButton:hover{
+  background: black;
+  border: 1px solid white;
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.react-calendar {
+  width: 600px;
+  height: 420px;
+  max-width: 100%;
+  background: white;
+  border: 1px solid #a0a096;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.125em;
+}
+.react-calendar--doubleView {
+  width: 700px;
+}
+.react-calendar--doubleView .react-calendar__viewContainer {
+  display: flex;
+  margin: -0.5em;
+}
+.react-calendar--doubleView .react-calendar__viewContainer > * {
+  width: 50%;
+  margin: 0.5em;
+}
+.react-calendar,
+.react-calendar *,
+.react-calendar *:before,
+.react-calendar *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.react-calendar button {
+  margin: 0;
+  border: 0;
+  height: 55px;
+  outline: none;
+}
+.react-calendar button:enabled:hover {
+  cursor: pointer;
+}
+.react-calendar__navigation {
+  height: 44px;
+  margin-bottom: 1em;
+}
+.react-calendar__navigation button {
+  min-width: 44px;
+  background: none;
+}
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: #e6e6e6;
+}
+.react-calendar__navigation button[disabled] {
+  background-color: #f0f0f0;
+}
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.75em;
+}
+.react-calendar__month-view__weekdays__weekday {
+  padding: 0.5em;
+}
+.react-calendar__month-view__weekNumbers {
+  font-weight: bold;
+}
+.react-calendar__month-view__weekNumbers .react-calendar__tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75em;
+  padding: calc(0.75em / 0.75) calc(0.5em / 0.75);
+}
+.react-calendar__month-view__days__day--weekend {
+  color: #d10000;
+}
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #757575;
+}
+.react-calendar__year-view .react-calendar__tile,
+.react-calendar__decade-view .react-calendar__tile,
+.react-calendar__century-view .react-calendar__tile {
+  padding: 2em 0.5em;
+}
+.react-calendar__tile {
+  max-width: 100%;
+  text-align: center;
+  padding: 0.75em 0.5em;
+  background: none;
+}
+.react-calendar__tile:disabled {
+  background-color: #f0f0f0;
+}
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #e6e6e6;
+}
+.react-calendar__tile--now {
+  background: #ffff76;
+}
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background: #ffffa9;
+}
+.react-calendar__tile--hasActive {
+  background: #76baff;
+}
+.react-calendar__tile--hasActive:enabled:hover,
+.react-calendar__tile--hasActive:enabled:focus {
+  background: #a9d4ff;
+}
+.react-calendar__tile--active {
+  background: #006edc;
+  color: white;
+}
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: #1087ff;
+}
+.react-calendar--selectRange .react-calendar__tile--hover {
+  background-color: #e6e6e6;
+}
+
+

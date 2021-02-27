@@ -40,6 +40,7 @@ const Feeds=({ isAuth })=>{
             <div className="MainPanel">
                 <div className="Feeds">
                     { FeedList && FeedList.map(task => {
+                         console.log(task.tid)
                             return (
                                 <Feed 
                                     user_name={task.user_name}
@@ -48,6 +49,7 @@ const Feeds=({ isAuth })=>{
                                     pats={task.pats}
                                     streak={task.streak}
                                     key={task.tid}
+                                    tid={task.tid}
                                 />
                             )
                         })

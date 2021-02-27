@@ -41,7 +41,7 @@ function App() {
                         <Route exact path='/login' component={Login} />
                         {/* <Route exact path="/register" component={register}/> */}
                         <Route exact path = "/new_task" component = {AddTask} />
-                        <Route exact path = "/calendar" component = {CalendarPage} />
+                        <Route exact path = "/calendar/:id" component = {CalendarPage} />
                         <Route exact path = "/feeds" component = {Feeds} />
                         <Route exact path = "/user_profile" component = {UserProfile} />
                         <Route exact path = "/friends" component = {Friends} />

@@ -5,7 +5,6 @@ import {CommentSection} from './CommentSection';
 
 export const Feed=(props)=>{
 
-    //props.user_name
 
     return(
         <div className="Feed" key={props.key}>
@@ -32,7 +31,7 @@ export const Feed=(props)=>{
                         {/* <div className="CommentButton">
                             {commentsCount} Comments
                         </div> */}
-                        <a href="calendar.html" className="DailyUploads">
+                        <a href={"/calendar/" + props.tid} className="DailyUploads">
                             Daily Uploads
                         </a>
                     </div>

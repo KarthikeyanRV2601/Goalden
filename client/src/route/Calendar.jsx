@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from'react-dom';
-import {Calendar} from '../components/Calendar_Components/Calendar';
-import {Information} from '../components/Calendar_Components/Information';
-import {Uploader} from '../components/Calendar_Components/Uploader';
+import {CalendarComp} from '../components/Calendar_Components/Calendar';
 import '../styles/calendar.css';
+import {NavBar} from '../components/NavBar';
 
-export const CalendarPage=()=>{
+export const CalendarPage=(props)=>{
+
+    console.log(props.match.params.id)
     return(
-        <div className="Calendar">
-            <Calendar/>
-            <Information/>
-            <Uploader/>
+        <div className="CalendarPage">
+            <NavBar/>
+            <CalendarComp tid={props.match.params.id}/>
+            
         </div>
     )
 }
