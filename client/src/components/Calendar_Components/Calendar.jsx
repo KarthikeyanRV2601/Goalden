@@ -13,28 +13,36 @@ export const CalendarComp = (props) => {
     const [ isMine, setIsMine ] = useState(true);
     const [ taskInfo, setTaskInfo ] = useState([]);
     const [ displayForm, setDisplayForm ] = useState(true);
-    const [ displayData, setDisplayData ] = useState([]);
-    const [ calendarValue, setCalendarValue ] = useState("");
-    const [isUpdated,setIsUpdate ] =useState(false);
+    const [ displayData, setDisplayData ] = useState({
+        "thumbnail": "",
+        "body": ""
+    });
+    const [ showGoalStarted, setGoalStarted ] = useState(false);
+    const [ calendarValue, setCalendarValue ] = useState(0);
+    const [ isUpdated,setIsUpdate ] =useState(false);
     const [ formData, setFormData ] = useState({
-    tid: props.tid,
-    update_thumbnail: "",
-    body: ""
-})
+        tid: props.tid,
+        update_thumbnail: "",
+        body: ""
+    })
+    const [CalendarState,setCalendarState]=useState("");
 
-    var ButtonClick=(e)=>{
-        e.target.parentElement.style.background="red";
+    const months = {
+        "01": "January",
+        "02": "February",
+        "03": "March",
+        "04": "April",
+        "05": "May",
+        "06": "June",
+        "07": "July",
+        "08": "August",
+        "09": "September",
+        "10": "October",
+        "11": "November",
+        "12": "December"
     }
     
-    var buttons=document.querySelector("[aria-label='February 2, 2021']").parentElement.style.background="green";
-    
-    // buttons.forEach((button=>{
-    //     button.addEventListener('click',ButtonClick)
-    // }));
-    // console.log(buttons);
-
-  useEffect(() => {
-
+    useEffect(() => {
     (async () => {
         try {
             const update_data = await axios.get('/api/update/' + props.tid);
@@ -43,18 +51,65 @@ export const CalendarComp = (props) => {
 
             // console.log(update_data.data.data.update);
             // console.log(post_owner.data.mine);
-            // console.log(task.data.data.tasks);
+            console.log(task.data.data.tasks);
             setUpdateList(update_data.data.data.update);
-            setTaskInfo(task);
+            setTaskInfo(task.data.data.tasks);
             setIsMine(post_owner);
-            
+
+
         } catch (error) {
             console.log(error)
         }
+        })()
+    }, [])
+    
+    var styling = (date, color)=>{
+        // StartDate="February 5, 2021";
+        var Stringdate="[aria-label^="+`'${date}'`+"]";
+        var StartDateButton= document.querySelectorAll(Stringdate);
+        if(StartDateButton[0]!= null)
+        {
+            StartDateButton[0].parentElement.style.background=color;
+            StartDateButton[0].parentElement.style.color="white";
+            
+        }
+        
+    }
+    if(taskInfo.length !== 0)
+    {
+        let taskDate = taskInfo[0].start_date
+        // console.log(taskDate)
+        let curDate = taskDate.substring(0, 2)
+        if(curDate[0] == 0)
+            curDate = curDate[1]
+        let curMonth = months[taskDate.substring(3, 5)]
+        let year = taskDate.substring(6, 10)
+        styling(curMonth + " " + curDate + ", " + year, "green")
+    }
 
-        console.log()
-    })()
-  }, [])
+    if( updateList.length !== 0 )
+    {
+        updateList.forEach(element => {
+            let updateDate = element.update_date
+            let curDate = updateDate.substring(0, 2)
+            if(curDate[0] == 0)
+                curDate = curDate[1]
+            let curMonth = months[updateDate.substring(3, 5)]
+            let year = updateDate.substring(6, 10)
+
+            styling(curMonth + " " + curDate + ", " + year, "orange")
+        })
+    }
+
+    
+    //change start date color
+
+    // console.log(buttons[0]);
+    // buttons.forEach((button=>{
+    //     button.addEventListener('click',ButtonClick)
+    // }));
+    
+  
 
 
     var FetchImageAsBase64=(e) => {
@@ -81,8 +136,8 @@ export const CalendarComp = (props) => {
         })
     }
 
-    const calendarChange = e => {
 
+    const calendarChange = e => {
         var dd=e.getDate();
         var mm=e.getMonth()+1;
         var yyyy=e.getFullYear();
@@ -107,13 +162,27 @@ export const CalendarComp = (props) => {
             if(el.update_date === date)
             {
                 found=1
-                setDisplayData(el)
+                setDisplayData({...displayData,
+                    "thumbnail": el.update_thumbnail,
+                    "body": el.body
+                })
                 setDisplayForm(false)
+                setGoalStarted(false);
             }
             else
                 setDisplayForm(true)
             }
         })
+        
+        if(taskInfo[0].start_date == date)
+        {
+            setDisplayData({...displayData,
+                "thumbnail": taskInfo[0].task_thumbnail,
+                "body": taskInfo[0].body
+            })
+            setGoalStarted(true);
+            setDisplayForm(false);
+        }
           
     }
     
@@ -128,21 +197,30 @@ export const CalendarComp = (props) => {
     }
 
     console.log(formData);
-}
+    }   
   
+
+
+
   return (
     <>
-      <Calendar
-        onChange={e => calendarChange(e)}
-        value={calendarValue}
-      />
+        <div class="ActualCalendarcontainer">
+        
+            <h1>{taskInfo[0] ? taskInfo[0].task_name : ""}</h1>
+            <Calendar
+            onChange={e => calendarChange(e)}
+            value={calendarValue}
+            />
+        </div>
+
         {!displayForm && 
           <div className="InformationContainer" >
+            <h2>{showGoalStarted?"Goal started today": "Daily update"}</h2>
             <div className="Wrapper">
                   <div className="SwitchLeft">
                       {/* <img src={back}/> */}
                   </div>
-                  {displayData.update_thumbnail?<img className="Thumbail" src={displayData.update_thumbnail}/>:null}
+                  {displayData.thumbnail?<img className="Thumbail" src={displayData.thumbnail}/>:null}
                   <div className="SwitchRight">
                       {/* <img src={back}/> */}
                   </div>
