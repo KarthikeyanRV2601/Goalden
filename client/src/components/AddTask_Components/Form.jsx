@@ -20,6 +20,7 @@ const Form=({isAuth })=>{
         isRecurring: 1
     });
     const [isChecked, setIsChecked] = useState(false);
+    
     const onChange = e => {
         let res;
         if(e.target.name == 'update')

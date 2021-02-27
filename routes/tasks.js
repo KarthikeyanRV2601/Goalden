@@ -23,6 +23,23 @@ router.get('/', async (req, res) => {
     }
 })
 
+// Get post corresponding to task id
+router.get('/details/:tid', async (req, res) => {
+    try {
+        const tasks = await db.query('select * from tasks natural join credentials WHERE tid = $1', [req.params.tid]);
+        res.json({
+            status: "success",
+            length: tasks.rows.length,
+            data: {
+                tasks: tasks.rows
+            }
+        })
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Error')
+    }
+})
+
 // Get all posts made by one particular user
 router.get('/:id', async (req, res) => {
     try {
@@ -53,11 +70,29 @@ router.post('/', auth, async (req, res) => {
     if(!("task_thumbnail" in req.body))
         req.body.task_thumbnail = null
     
+    start_date = new Date();
+    var dd = start_date.getDate();
+    var mm = start_date.getMonth() + 1;
+    var yyyy = start_date.getFullYear();
+    if(dd<10) 
+    {
+      dd='0'+dd;
+    } 
+    if(mm<10) 
+    {
+      mm='0'+mm;
+    } 
+    start_date = dd+ "-" + mm + "-" +yyyy
+    console.log(dd+ "-" + mm + "-" +yyyy)
+    // start_date = "02-02-2021"
+    // start_date = 
     try {
         const results = await db.query(`insert into tasks (uid, task_name, body, isRecurring, frequency, 
-                        end_date, private_goal, category, task_thumbnail) values ($1, $2, $3, $4, $5, TO_DATE($6, 'DD/MM/YYYY'), $7, $8, $9) returning *`, 
+                        end_date, private_goal, category, task_thumbnail, start_date) values ($1, $2, $3, $4, $5, 
+                            TO_DATE($6, 'DD/MM/YYYY'), $7, $8, $9, $10) returning *`, 
                         [req.user.id, req.body.task_name, req.body.body, req.body.isRecurring, req.body.frequency, 
-                         req.body.end_date, req.body.private_goal, req.body.category, req.body.task_thumbnail]); 
+                         req.body.end_date, req.body.private_goal, req.body.category, req.body.task_thumbnail
+                        , start_date]); 
         console.log("Back end")
         res.json({
             status: "success",

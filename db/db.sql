@@ -14,8 +14,8 @@ create table tasks (
     status VARCHAR(20) DEFAULT 'ONGOING',
     isRecurring NUMERIC(1) NOT NULL DEFAULT 1,
     frequency VARCHAR(15),
-    start_date DATE NOT NULL DEFAULT CURRENT_DATE,
-    end_date DATE,
+    start_date VARCHAR(20) NOT NULL,
+    end_date VARCHAR(20),
     private_goal NUMERIC(1) NOT NULL,
     category VARCHAR(50) NOT NULL,
     task_thumbnail VARCHAR
@@ -37,9 +37,9 @@ insert into tasks (uid, task_name, body, isRecurring, frequency, private_goal, c
     values (6, 'Code 1hr everyday', 'Day 1 of my coding adventure begins today. Will become an expert coder by the end of this. You guys just watch', 1, 'D', 0,'Education');
 
 
-create table calender (
+create table calendar (
     update_id BIGSERIAL PRIMARY KEY,
-    update_date Date DEFAULT CURRENT_DATE,
+    update_date VARCHAR(20) NOT NULL,
     tid BIGINT NOT NULL REFERENCES tasks(tid),
     update_thumbnail VARCHAR,
     body VARCHAR(1000) 
