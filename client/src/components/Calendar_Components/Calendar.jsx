@@ -3,7 +3,6 @@ import Calendar from 'react-calendar';
 import axios from 'axios';
 import back from '../../media/icons/back.svg'
 import scenary from '../../media/images/scenary.jpg'
-import defaultThumbnail from '../../media/images/defaultThumbnail.jpg';
 // import { post } from '../../../../routes/tasks';
 
 // import 'react-calendar/dist/Calendar.css';
@@ -22,9 +21,17 @@ export const CalendarComp = (props) => {
     update_thumbnail: "",
     body: ""
 })
+
+    var ButtonClick=(e)=>{
+        e.target.parentElement.style.background="red";
+    }
     
-    var buttons=document.querySelectorAll("[aria-label^='February']");
-    console.log(buttons);
+    var buttons=document.querySelector("[aria-label='February 2, 2021']").parentElement.style.background="green";
+    
+    // buttons.forEach((button=>{
+    //     button.addEventListener('click',ButtonClick)
+    // }));
+    // console.log(buttons);
 
   useEffect(() => {
 
@@ -34,9 +41,9 @@ export const CalendarComp = (props) => {
             const task = await axios.get('/api/tasks/details/' + props.tid);
             const post_owner = await axios.get('/api/update/mine/' + props.tid);
 
-            console.log(update_data.data.data.update);
-            console.log(post_owner.data.mine);
-            console.log(task.data.data.tasks);
+            // console.log(update_data.data.data.update);
+            // console.log(post_owner.data.mine);
+            // console.log(task.data.data.tasks);
             setUpdateList(update_data.data.data.update);
             setTaskInfo(task);
             setIsMine(post_owner);
@@ -44,6 +51,8 @@ export const CalendarComp = (props) => {
         } catch (error) {
             console.log(error)
         }
+
+        console.log()
     })()
   }, [])
 
@@ -73,7 +82,7 @@ export const CalendarComp = (props) => {
     }
 
     const calendarChange = e => {
-        console.log(e)
+
         var dd=e.getDate();
         var mm=e.getMonth()+1;
         var yyyy=e.getFullYear();
@@ -133,7 +142,7 @@ export const CalendarComp = (props) => {
                   <div className="SwitchLeft">
                       {/* <img src={back}/> */}
                   </div>
-                  <img className="Thumbail" src={displayData.update_thumbnail ? displayData.update_thumbnail : defaultThumbnail}/>
+                  {displayData.update_thumbnail?<img className="Thumbail" src={displayData.update_thumbnail}/>:null}
                   <div className="SwitchRight">
                       {/* <img src={back}/> */}
                   </div>
