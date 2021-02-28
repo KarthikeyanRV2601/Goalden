@@ -14,14 +14,14 @@ router.post('/', auth, async (req, res) => {
     var yyyy = update_date.getFullYear();
     if(dd<10) 
     {
-      dd='0'+dd;
+        dd='0'+dd;
     } 
     if(mm<10) 
     {
-      mm='0'+mm;
+        mm='0'+mm;
     } 
     update_date = dd+ "-" + mm + "-" +yyyy
-    update_date = "25-01-2021"
+    // update_date = "22-02-2021"
     try {
         const results = await db.query(`insert into calendar (tid,update_thumbnail, body, update_date) 
                     values ($1, $2, $3, $4) returning *`, 

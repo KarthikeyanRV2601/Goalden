@@ -545,15 +545,112 @@
 
 
 
-
-.CalendarPage .HoverDisplay{
+.CalendarPage .No_Update_Hover_Info::before {
+  content: 'No updates on this day - 20 goalds deducted';
+  width: 150px;
+  height: 50px;
+  padding: 5px;
+  top: 50%;
+  right: 50%;
+  text-align: center;
   position: absolute;
-  width: 200px;
-  height:50px;
-  bottom: 50px;
-  left: 250px;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  background: white;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  opacity: 0;
+}
+
+.CalendarPage .No_Update_Hover_Info:hover::before {
+  /* display: block; */
+  right: -200px;
+  opacity: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.CalendarPage .frequencydata{
+  font-size: 14px;
+}
+.CalendarPage .Updated_Hover_Info::before {
+  content: 'Updates available - credited 20 goalds';
+  width: 150px;
+  height: 50px;
+  padding: 5px;
+  bottom: 10%;
+  text-align: center;
+  position: absolute;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  background: white;
+  color: #353535;
+  z-index: 100;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: none;
+}
+
+.CalendarPage .Updated_Hover_Info:hover::before {
+  display: inherit;
+  /* display: block; */
+  bottom: 5%;
+  opacity: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }

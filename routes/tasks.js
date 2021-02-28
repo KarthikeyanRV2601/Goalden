@@ -41,9 +41,9 @@ router.get('/details/:tid', async (req, res) => {
 })
 
 // Get all posts made by one particular user
-router.get('/:id', async (req, res) => {
+router.get('/user', auth, async (req, res) => {
     try {
-        const tasks = await db.query('select * from tasks where uid=$1', [req.params.id]);
+        const tasks = await db.query('select * from tasks where uid=$1', [req.user.id]);
         // console.log(user.rows)
         res.json({
             status: "success",
@@ -84,7 +84,7 @@ router.post('/', auth, async (req, res) => {
     } 
     start_date = dd+ "-" + mm + "-" +yyyy
     console.log(dd+ "-" + mm + "-" +yyyy)
-    // start_date = "20-01-2021"
+    start_date = "20-02-2021"
     // start_date = 
     try {
         const results = await db.query(`insert into tasks (uid, task_name, body, isRecurring, frequency, 
@@ -107,16 +107,21 @@ router.post('/', auth, async (req, res) => {
 });
 
 // Pat a post
-router.put('/pat/:tid', auth, async (req, res) => {
-
-    
+router.post('/pat/:tid', auth, async (req, res) => {
     try {
             const oldTask = await db.query('select (pats) from tasks where tid=$1', [req.params.tid])
             pats = parseInt(oldTask.rows[0].pats)
-
-            pats = req.body.upvote ? pats +1 : pats-1;
+            console.log(req.body[0].upvote)
+            if(req.body[0].upvote)
+            {
+                console.log("eeeee")
+                pats = pats + 1
+            }
+            else
+                pats = pats - 1
             if(pats < 0)
                 pats = 0
+            console.log(pats)
             const results = await db.query('update tasks set pats=$1 where tid=$2 returning *', [pats, req.params.tid])
             // const res = await db.query('update ')
         res.json({
@@ -131,6 +136,8 @@ router.put('/pat/:tid', auth, async (req, res) => {
         console.log(error)
     }
 });
+
+router.get('/pat/:tid')
 
 
 module.exports = router

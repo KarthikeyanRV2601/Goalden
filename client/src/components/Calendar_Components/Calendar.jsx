@@ -39,6 +39,7 @@ export const CalendarComp = (props) => {
         "12": "December"
     }
     
+    
     useEffect(() => {
     (async () => {
         try {
@@ -73,7 +74,6 @@ export const CalendarComp = (props) => {
 
         }
         reader.readAsDataURL(file);
-
     }
 
     var onBodyChange=(e)=>{
@@ -83,6 +83,31 @@ export const CalendarComp = (props) => {
             [e.target.name]: e.target.value
         })
     }
+
+    var differenceDates=(date1,date2)=>{
+        const diffTime = Math.abs(date2 - date1);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+        return diffDays;
+    }
+   
+
+    // var dates = []
+    // if(updateList)
+    // {
+    //     updateList.forEach(ele => {
+    //         var parts = ele.update_date.split('-');
+    //         var mydate = new Date(parts[2], parseInt(parts[1]) - 1, parts[0]); 
+    //         // console.log(mydate);
+    //         dates.push(mydate);
+    //     })
+    //     // console.log("before",dates);
+    //     dates.sort(function(a,b){
+    //         return new Date(b.date) - new Date(a.date);
+    //     });
+    //     // console.log(dates);
+        
+        
+    // }
 
 
     const calendarChange = (value, e) => {
@@ -127,7 +152,6 @@ export const CalendarComp = (props) => {
         
         if(found != 1)
         {
-
             var today = new Date()
             var dd=today.getDate();
             var mm=today.getMonth()+1;
@@ -153,10 +177,12 @@ export const CalendarComp = (props) => {
             else if (date == today && isMine)
             {
                 console.log(isMine)
+                setGoalStarted(false);
                 setDisplayForm(0);
             }
             else
             {
+                setGoalStarted(false);
                 setDisplayData({...displayData,
                     "thumbnail": null,
                     "body": "No recorded update today."
@@ -187,13 +213,14 @@ export const CalendarComp = (props) => {
         if(taskInfo[0] != null && updateList != null){
             const task = [taskInfo[0].start_date]
             if (view === 'month') {
-              // Check if a date React-Calendar wants to check is on the list of dates to add class to
-              if (task.find(dDate => dDate === date)) {
-                return 'StartDate';
-              }
-              if (updateList.find(element => element.update_date === date)){
-                  return 'Checkpoint';
-              }
+                // Check if a date React-Calendar wants to check is on the list of dates to add class to
+                if (task.find(dDate => dDate === date)) {
+                    return 'StartDate';
+                }
+                if (updateList.find(element => element.update_date === date)){
+                //   document.querySelector('.HoverDisplay').classList.add("Updated_Hover_Info");
+                    return 'Checkpoint';
+                }
             }
         }
         return ""
@@ -203,7 +230,10 @@ export const CalendarComp = (props) => {
   const onSubmit = async e => {
     e.preventDefault();
     // console.log(formData);
+    
+
     try {
+
         const res = axios.post('/api/update', formData);
     } catch (error) {
         console.log(error)
@@ -212,6 +242,14 @@ export const CalendarComp = (props) => {
     console.log(formData);
     }       
   
+    //Updated_Hover_Info
+    //No_Update_Hover_Info
+
+var FrequencyData={
+    W:"week",
+    M:"month",
+    D:"day"
+}
 
 
 
@@ -219,14 +257,15 @@ export const CalendarComp = (props) => {
     <>
         <div class="ActualCalendarcontainer">
         
-            <h1>{taskInfo[0] ? taskInfo[0].task_name : ""}</h1>
+            <h1>{taskInfo[0] ? taskInfo[0].task_name: ""}</h1>
+            {/* <p class="frequencydata">{taskInfo[0] ? `${taskInfo[0].frequency[1]} updates per ${FrequencyData[taskInfo[0].frequency[0]]}` : ""}</p> */}
             <Calendar
                 onChange={(value, event) => calendarChange(value, event)}
                 tileClassName={tileClassName}
             />
         </div>
-        <div className="HoverDisplay">{isUpdated?"Updates available - credited 10 goalds":"No updates - deduced 20 goalds"</div>
-
+        {/* <div className="HoverDisplay">{isUpdated?"Updates available - credited 10 goalds":"No updates - deduced 20 goalds"</div> */}
+        <div class="HoverDisplay"></div>
         {(displayForm == 1 || displayForm == 2) && 
           <div className="InformationContainer" >
             <h2>{showGoalStarted?"Goal started today": "Update Info"}</h2>
@@ -281,10 +320,7 @@ export const CalendarComp = (props) => {
 
               </div>
             }
-       
-    
-      
-        
+
     </>
   );
 }

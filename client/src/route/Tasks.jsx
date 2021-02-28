@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ReactDOM from'react-dom';
 import {NavBar} from '../components/NavBar';
@@ -12,18 +12,22 @@ export const Tasks=()=>{
     var TaskTitles=["hello"]
     // var [ TaskTitles, setTaskTitles ] = useState([]);
     //Save the title values here
+    const [ taskList, setTaskList ] = useState([])
     
-    // useEffect(() => {
-    //     (async () => {
-    //         try {
-    //             const TitlesData = await axios.get('/api/salesperson/' + user.id + '/customer');
-    //             console.log(TitlesData)
-    //             // setsetTaskTitles(spCusts.data.data.results)
-    //         } catch (err) {
-    //             console.log(err)
-    //         }
-    //     })()
-    // }, [])
+
+    useEffect(() => {
+
+        (async () => {
+            try {
+                const incoming_data = await axios.get('/api/tasks/user');
+                console.log(incoming_data.data.data.tasks)
+                setTaskList(incoming_data.data.data.tasks);
+                console.log(taskList)
+            } catch (error) {
+                console.log(error)
+            }
+        })()
+    }, [])
 
     return(
         <div className="TasksPage">
@@ -31,7 +35,17 @@ export const Tasks=()=>{
             <div className="LeftPanel">
                 <SearchBar/>
                 <div className="TasksList">
-                   {TaskTitles.map((item)=><Task TaskTitle={item} /*pass Set status function along*//>)}
+                   {taskList && taskList.map((item)=> {
+                    console.log(item)
+                        return (
+
+                            <Task 
+                                task_id={item.tid}
+                                task_name={item.task_name}
+                            />
+                        )
+                    })
+                }
                 </div>
             </div>
             <div className="RightPanel">

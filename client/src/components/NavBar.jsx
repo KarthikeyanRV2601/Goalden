@@ -16,7 +16,7 @@ export const NavBar=()=>{
             <a href="friends.html" className="Link">
                 Friends
             </a>
-            <a href="tasks.html" className="Link">
+            <a href="/tasks" className="Link">
                 Tasks
             </a>
         </ul>

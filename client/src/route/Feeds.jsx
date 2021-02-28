@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from'react-dom';
 import {Feed} from '../components/Feeds_Components/Feed';
 import {NavBar} from '../components/NavBar';
-import {Profile} from '../components/Feeds_Components/Profile';
-import '../styles/feeds.css';
+import Profile from '../components/Feeds_Components/Profile';
+import '../styles/feedstemp.css';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
@@ -36,7 +36,7 @@ const Feeds=({ isAuth })=>{
         <div className="FeedPage">
             <NavBar/>
             <div className="LeftPanel">
-                <Profile/>
+                <Profile />
             </div>
             <div className="MainPanel">
                 <div className="Feeds">
@@ -51,6 +51,7 @@ const Feeds=({ isAuth })=>{
                                     task_name={task.task_name}
                                     streak={task.streak}
                                     key={task.tid}
+                                    uid={task.uid}
                                     tid={task.tid}
                                 />
                             )

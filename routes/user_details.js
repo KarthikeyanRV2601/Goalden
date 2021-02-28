@@ -24,9 +24,11 @@ router.get('/', auth,  async (req, res) => {
 })
 
 // Change goald coins
-router.get('/details/:tid', async (req, res) => {
+router.put('/goald', auth, async (req, res) => {
     try {
-        const tasks = await db.query('select * from tasks natural join credentials WHERE tid = $1', [req.params.tid]);
+        
+        const tasks = await db.query('update user_details set goald=$1 where uid=$2;', [req.body.goald 
+            + req.body.amount, req.user.id]);
         res.json({
             status: "success",
             length: tasks.rows.length,
