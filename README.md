@@ -9,5 +9,10 @@ Goalden aims to solve this daunting problem by creating a social atmosphere to k
 <p>
   <img src="https://www.linkpicture.com/q/techstack-goalden-1_1.png" />
 </p>
+<h2>SCREENSHOT</h2>
+<p>
+  Feeds page
+  <img src="https://www.linkpicture.com/q/goalden-feeds.png" />
+</p>
 
 
