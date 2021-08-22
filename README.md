@@ -12,7 +12,7 @@ Goalden aims to solve this daunting problem by creating a social atmosphere to k
 <h2>SCREENSHOT</h2>
 <p>
   Feeds page<br/>
-  <img src="https://www.linkpicture.com/q/goalden-feeds.png" />
+  <img width=1000 height=520 src="https://www.linkpicture.com/q/goalden-feeds.png" />
 </p>
 
 
