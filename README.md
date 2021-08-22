@@ -7,7 +7,7 @@ The pandemic has worsened this situation as we have no one to monitor or guide u
 Goalden aims to solve this daunting problem by creating a social atmosphere to keep you accountable and motivated throughout your journey to achieve your goals.
 <h2>TECH STACK</h2>
 <p>
-  <img src="https://www.linkpicture.com/q/techstack-goalden.png" />
+  <img src="https://www.linkpicture.com/q/techstack-goalden-1_1.png" />
 </p>
 
 
